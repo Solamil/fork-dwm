@@ -46,6 +46,7 @@ static const Layout layouts[] = {
 
 /* key definitions */
 #define MODKEY Mod4Mask 
+#define METAKEY Mod3Mask
 
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
@@ -61,7 +62,6 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char *muttcmd[] = { "st", "-e", "neomutt", NULL };
-static const char *browsercmd[] = { "qutebrowser", NULL };
 
 static const char *poweroffcmd[] = { "i3exit", "shutdown", NULL};
 static const char *suspendcmd[] = { "i3exit", "suspend", NULL };
@@ -69,17 +69,21 @@ static const char *hibernatecmd[] = { "i3exit", "hibernate", NULL };
 static const char *rebootcmd[] = { "i3exit", "reboot", NULL };
 static const char *turn_monitor_off_cmd[] = { "i3exit", "turn_monitor_off", NULL };
 
+//static const char *layout_keyboard[] = { "xkblayout-state", "set", "+1", "&&", "kill", "-36", "$(pidof dwmblocks)", NULL };
+static const char *layout_keyboard[] = { "xkblayout-state", "set", "+1", NULL };
+
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,			XK_m, 	   spawn,	   {.v = muttcmd} },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY, 			XK_w,      spawn,	   {.v = browsercmd} },
+	{ MODKEY, 			XK_w,      spawn,	   SHCMD("qutebrowser")},
 	{ MODKEY, 			XK_F1, 	   spawn,	   {.v = suspendcmd} },
 	{ MODKEY, 			XK_F2, 	   spawn,	   {.v = hibernatecmd} },
 	{ MODKEY, 			XK_F3, 	   spawn,	   {.v = rebootcmd} },
 	{ MODKEY, 			XK_F4, 	   spawn,	   {.v = poweroffcmd} },
 	{ MODKEY, 			XK_F5, 	   spawn,	   {.v = turn_monitor_off_cmd} },
+	{ MODKEY,			XK_x,      spawn,	   SHCMD("xkblayout-state set +1 && kill -36 $(pidof dwmblocks)") },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
