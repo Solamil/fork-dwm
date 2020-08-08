@@ -69,8 +69,6 @@ static const char *hibernatecmd[] = { "i3exit", "hibernate", NULL };
 static const char *rebootcmd[] = { "i3exit", "reboot", NULL };
 static const char *turn_monitor_off_cmd[] = { "i3exit", "turn_monitor_off", NULL };
 
-//static const char *layout_keyboard[] = { "xkblayout-state", "set", "+1", "&&", "kill", "-36", "$(pidof dwmblocks)", NULL };
-static const char *layout_keyboard[] = { "xkblayout-state", "set", "+1", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -84,6 +82,8 @@ static Key keys[] = {
 	{ MODKEY, 			XK_F4, 	   spawn,	   {.v = poweroffcmd} },
 	{ MODKEY, 			XK_F5, 	   spawn,	   {.v = turn_monitor_off_cmd} },
 	{ MODKEY,			XK_x,      spawn,	   SHCMD("xkblayout-state set +1 && kill -36 $(pidof dwmblocks)") },
+	{ MODKEY,			XK_equal,  spawn, 	   SHCMD("amixer set Master 2%+ && kill -37 $(pidof dwmblocks)")},
+	{ MODKEY,			XK_minus,  spawn, 	   SHCMD("amixer set Master 2%- && kill -37 $(pidof dwmblocks)")},
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
