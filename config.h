@@ -73,7 +73,7 @@ static const char *turn_monitor_off_cmd[] = { "i3exit", "turn_monitor_off", NULL
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
-	{ MODKEY,			XK_m, 	   spawn,	   {.v = muttcmd} },
+	{ MODKEY,			XK_n, 	   spawn,	   {.v = muttcmd} },
 	{ MODKEY,             		XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY, 			XK_w,      spawn,	   SHCMD("qutebrowser")},
 	{ MODKEY, 			XK_F1, 	   spawn,	   {.v = suspendcmd} },
@@ -82,8 +82,9 @@ static Key keys[] = {
 	{ MODKEY, 			XK_F4, 	   spawn,	   {.v = poweroffcmd} },
 	{ MODKEY, 			XK_F5, 	   spawn,	   {.v = turn_monitor_off_cmd} },
 	{ MODKEY,			XK_x,      spawn,	   SHCMD("xkblayout-state set +1 && kill -36 $(pidof dwmblocks)") },
-	{ MODKEY,			XK_equal,  spawn, 	   SHCMD("amixer set Master 2%+ && kill -37 $(pidof dwmblocks)")},
-	{ MODKEY,			XK_minus,  spawn, 	   SHCMD("amixer set Master 2%- && kill -37 $(pidof dwmblocks)")},
+	{ MODKEY,			XK_equal,  spawn, 	   SHCMD("amixer set Master 2%+ -q && kill -37 $(pidof dwmblocks)")},
+	{ MODKEY,			XK_minus,  spawn, 	   SHCMD("amixer set Master 2%- -q && kill -37 $(pidof dwmblocks)")},
+	{ MODKEY,			XK_m,	   spawn,	   SHCMD("amixer set Master toggle -q && kill -37 $(pidof dwmblocks)") },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
