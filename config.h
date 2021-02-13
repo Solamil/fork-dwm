@@ -8,11 +8,11 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "Source Code Pro:size=9" };
 static const char dmenufont[]       = "Source Code Pro:size=9";
-static const char col_gray1[]       = "#222222";
+static const char col_gray1[]       = "#3a2d20";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#005577";
+static const char col_cyan[]        = "#6d2f2f";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
@@ -83,8 +83,8 @@ static Key keys[] = {
 	{ MODKEY, 			XK_F5, 	   spawn,	   {.v = turn_monitor_off_cmd} },
 	{ MODKEY, 			XK_F6, 	   spawn,	   SHCMD("hdmi_sound && kill -37 $(pidof dwmblocks)") },
 	{ MODKEY,			XK_x,      spawn,	   SHCMD("xkblayout-state set +1 && kill -36 $(pidof dwmblocks)") },
-	{ MODKEY|ShiftMask,		XK_equal,  spawn,     	   SHCMD("pactl set-source-volume @DEFAULT_SOURCE@ +2% +0%") },
-	{ MODKEY|ShiftMask,		XK_minus,  spawn,     	   SHCMD("pactl set-source-volume @DEFAULT_SOURCE@ -2% +0%") },
+	{ MODKEY|ShiftMask,		XK_equal,  spawn,     	   SHCMD("mic-volume +2") },
+	{ MODKEY|ShiftMask,		XK_minus,  spawn,     	   SHCMD("mic-volume -2") },
 	{ MODKEY,			XK_equal,  spawn, 	   SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +2% && kill -37 $(pidof dwmblocks)")},
 	{ MODKEY,			XK_minus,  spawn, 	   SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -2% && kill -37 $(pidof dwmblocks)")},
 	{ MODKEY,			XK_m,	   spawn,	   SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle && kill -37 $(pidof dwmblocks)") },
